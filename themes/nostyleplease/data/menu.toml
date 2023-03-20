@@ -1,0 +1,53 @@
+[[entries]]
+title = "关于"
+
+  [[entries.entries]]
+  title = "你好，我叫 ikruns，软件工程师@中国。"
+
+  [[entries.entries]]
+  title = "用邮件找到我 ikruns@gmail.com。"
+
+[[entries]]
+title = "全部文章"
+
+  [entries.post_list]
+  limit = 4
+  show_more = true
+  show_more_text = "See archive..."
+  show_more_url = "posts"
+
+[[entries]]
+title = "专栏文章"
+  
+  [[entries.entries]]
+  title = "linux os"
+  
+  [entries.entries.post_list]
+  limit = 3
+  section = "linux"
+  show_more = true
+  show_more_text = "See more posts..."
+  show_more_url = "linux"
+
+#[[entries]]
+#title = "rss"
+#url = "index.xml"
+
+#[[entries]]
+#title = "another list"
+#
+#  [[entries.entries]]
+#  title = "with subitems"
+#
+#    [[entries.entries.entries]]
+#    title = "with subsubitems"
+#
+#    [[entries.entries.entries]]
+#    title = "example page"
+#    url = "about"
+
+#[[entries]]
+#title = "PRO TIP"
+#entries = [
+#   { title = "to edit this menu, edit data/menu.toml file" }
+#  ]

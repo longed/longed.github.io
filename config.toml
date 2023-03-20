@@ -1,0 +1,4 @@
+baseURL = 'http://ikruns.io/'
+languageCode = 'zh-cn'
+title = 'ikruns'
+theme = 'nostyleplease'
