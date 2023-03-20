@@ -1,4 +1,4 @@
-baseURL = 'http://ikruns.io/'
+baseURL = 'http://longed.io/'
 languageCode = 'zh-cn'
-title = 'ikruns'
+title = 'longed'
 theme = 'nostyleplease'
