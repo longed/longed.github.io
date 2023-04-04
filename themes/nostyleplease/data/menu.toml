@@ -26,8 +26,18 @@ title = "专栏文章"
   limit = 3
   section = "linux"
   show_more = true
-  show_more_text = "See more posts..."
+  show_more_text = "See more articles..."
   show_more_url = "linux"
+
+[[entries]]
+title = "我的项目"
+
+  [entries.post_list]
+  limit = 3
+  section = "projects"
+  show_more = true
+  show_more_text = "See more projects..."
+  show_more_url = "projects"
 
 #[[entries]]
 #title = "rss"
