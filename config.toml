@@ -1,4 +1,4 @@
 baseURL = 'http://longed.io/'
 languageCode = 'zh-cn'
-title = 'longed'
+title = 'Longed'
 theme = 'nostyleplease'
