@@ -52,12 +52,12 @@ void palindrome_v1() {
     getchar();
   }
 
-  char palindrome_string[4] = {'\0'};
+  char reverse_string[4] = {'\0'};
   for (int i = 2; i >= 0; --i) {
-    palindrome_string[2 - i] = input_string[i];
+    reverse_string[2 - i] = input_string[i];
   }
 
-  if (strcmp(input_string, palindrome_string) == 0) {
+  if (strcmp(input_string, reverse_string) == 0) {
     printf("It's palindrome!\n");
   } else {
     printf("No, it's not.\n");
@@ -124,3 +124,29 @@ void palindrome_v2() {
 
 int main() { palindrome_v2(); }
 ```
+`palindrome_v2` 代码改动不大，仅是合并了循环，不过我觉得思路上有本质区别。v1 的思路是拿到完整的字符串后再求取字符串的逆序；v2 的思路是在输入字符的过程中就求取了**已输入字符**的逆序。它俩的区别是整体与部分的区别，求取字符串的逆序并不需要拿到完整的字符串时才开始，已输入字符是完整字符串的部分，已输入字符的逆序也是完整字符串逆序的部分。这种**增量式**的求取字符串逆序的思路让求取字符串逆序的时机提前了。输入字符串的长度越长，这种思路带来的优势越明显。
+
+这种做法用到判断一个整数是否是回文数字，也行得通。
+```c
+bool isPalindrome(int x) {
+  if (x < 0) {
+    return false;
+  }
+  if (x == 0) {
+    return true;
+  }
+  int last = x % 10;
+  if (last == 0) {
+    return false;
+  }
+  int reverse_num = 0;
+  while (x > reverse_num) {
+    reverse_num = x % 10 + reverse_num * 10;
+    x = x / 10;
+  }
+  return x == reverse_num || x == (reverse_num / 10);
+}
+```
+输入的整数 `x` 不知道有多少位，如果想找到 `x` 的最高位来计算 `x` 的位数，拿到位数后再计算 `x` 的逆序数字，这么做势必要多一次循环，本可以提前计算逆序被推迟了。上面代码里 `while` 循环把求逆序数字和计算每位数字一起做了。
+
+这种增量的思路巧妙，应用也广泛，是一种优雅的做法。
