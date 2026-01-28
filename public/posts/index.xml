@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ikruns</title>
-    <link>https://ikruns.dev/</link>
-    <description>Recent content on ikruns</description>
+    <title>Posts on ikruns</title>
+    <link>https://ikruns.dev/posts/</link>
+    <description>Recent content in Posts on ikruns</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 25 Aug 2022 21:30:04 +0800</lastBuildDate>
-    <atom:link href="https://ikruns.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Dec 2023 18:01:59 +0800</lastBuildDate>
+    <atom:link href="https://ikruns.dev/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Palindrome</title>
       <link>https://ikruns.dev/posts/palindrome/</link>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-cn"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <meta name="description" content="在终端上多次输入字符，程序把多次输入的字符拼接到一起打印到终端上，学习编程语言时经常会写这样的程序。
+#include &lt;stdio.h&gt; #include &lt;stdlib.h&gt; void input_output() { int nums[3] = {0}; for (int i = 0; i &lt; 3; &#43;&#43;i) { printf(&#34;input integer:&#34;); scanf(&#34;%d&#34;, &amp;nums[i]); } for (int i = 0; i &lt; 3; &#43;&#43;i) { printf(&#34;%d&#34;, nums[i]); } } int main() { input_output(); } 这样的小程序和回文结合起来时，我觉得更有意思。假设在终端里一次输入一个字符，输入 Y 次，在结束最后一次输入时，判断输入的字符串是不是回文。
+回文的定义是&quot;reads the same backwards as forwards&quot;，即从前开始读和从后开始读得到的字符串一样。如果字符串是回文串，它的第一个字符是&rsquo;x&rsquo;，那么它的最后一个字符肯定也是&rsquo;x&rsquo;。
+我最先想到的是和上面的终端打印字符程序的方法一样，用一个数组保存每次输入的字符，在读取到最后一个字符时，逆序将数组里的字符打印出来，如果逆序得到的字符串和输入的字符串相等，那么输入的字符串就是回文串。
+#include &lt;stdio.h&gt; #include &lt;stdlib.h&gt; #include &lt;string.h&gt; void input_output() { int nums[3] = {0}; for (int i = 0; i &lt; 3; &#43;&#43;i) { printf(&#34;input integer:&#34;); scanf(&#34;%d&#34;, &amp;nums[i]); } for (int i = 0; i &lt; 3; &#43;&#43;i) { printf(&#34;%d&#34;, nums[i]); } } void palindrome_v1() { char input_string[4] = {&#39;\0&#39;}; for (int i = 0; i &lt; 3; &#43;&#43;i) { printf(&#34;input character:&#34;); input_string[i] = getchar(); getchar(); } char reverse_string[4] = {&#39;\0&#39;}; for (int i = 2; i &gt;= 0; --i) { reverse_string[2 - i] = input_string[i]; } if (strcmp(input_string, reverse_string) == 0) { printf(&#34;It&#39;s palindrome!">  
+
+  <title>
+    
+      Palindrome
+    
+  </title>
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/" />
+  
+  
+  
+  <link rel="stylesheet" href="/css/main.525ab84906f01dbd5647c850e27b1eb24d39c8252db9abec15c0a69e68bc6ee7fdefd45dbc2e99f73944095857ae87c71cdb1b1af9beeebddeacbf523e8e1629.css" integrity="sha512-Ulq4SQbwHb1WR8hQ4nsesk05yCUtuavsFcCmnmi8buf979RdvC6Z9zlECVhXrofHHNsbGvm&#43;7r3erL9SPo4WKQ==" />
+  
+</head>
+<body a="auto">
+        <main class="page-content" aria-label="Content">
+            <div class="w">
+<a href="/">..</a>
+
+<article>
+    <p class="post-meta">
+        <time datetime="2023-12-17 18:01:59 &#43;0800 CST">
+            2023-12-17
+        </time>
+    </p>
+
+    <h1>Palindrome</h1>
+
+    <p>在终端上多次输入字符，程序把多次输入的字符拼接到一起打印到终端上，学习编程语言时经常会写这样的程序。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C" data-lang="C"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">input_output</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> nums[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;input integer:&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">scanf</span>(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>nums[i]);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d&#34;</span>, nums[i]);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() { <span style="color:#a6e22e">input_output</span>(); }
+</span></span></code></pre></div><p>这样的小程序和回文结合起来时，我觉得更有意思。假设在终端里一次输入一个字符，输入 Y 次，在结束最后一次输入时，判断输入的字符串是不是回文。</p>
+<p>回文的定义是&quot;reads the same backwards as forwards&quot;，即从前开始读和从后开始读得到的字符串一样。如果字符串是回文串，它的第一个字符是&rsquo;x&rsquo;，那么它的最后一个字符肯定也是&rsquo;x&rsquo;。</p>
+<p>我最先想到的是和上面的终端打印字符程序的方法一样，用一个数组保存每次输入的字符，在读取到最后一个字符时，逆序将数组里的字符打印出来，如果逆序得到的字符串和输入的字符串相等，那么输入的字符串就是回文串。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">input_output</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> nums[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;input integer:&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">scanf</span>(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>nums[i]);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d&#34;</span>, nums[i]);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">palindrome_v1</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> input_string[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;\0&#39;</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;input character:&#34;</span>);
+</span></span><span style="display:flex;"><span>    input_string[i] <span style="color:#f92672">=</span> <span style="color:#a6e22e">getchar</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getchar</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> reverse_string[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;\0&#39;</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; <span style="color:#f92672">--</span>i) {
+</span></span><span style="display:flex;"><span>    reverse_string[<span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> i] <span style="color:#f92672">=</span> input_string[i];
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">strcmp</span>(input_string, reverse_string) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;It&#39;s palindrome!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;No, it&#39;s not.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() { <span style="color:#a6e22e">palindrome_v1</span>(); }
+</span></span></code></pre></div><p>这么写可以判断字符串是不是回文字符串，但是不够高效，因为输入、得到逆序串、判等在一起时间复杂度为 O(n) + O(n) + O(log(n))。（假设排序算法时间复杂度是 O(log(n)) )</p>
+<p>至少还有一个优化点，那就是&quot;得到逆序串&quot;。我们可以<strong>实时</strong>地从控制台读取字符并计算出已经输入的字符们的逆序，不用等待拿到字符串所有字符后再计算，这样可以用一个迭代做完；当输入字符串的最后一个字符后，此字符串的逆序也就能拿到。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdio.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;stdlib.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;string.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">input_output</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> nums[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> {<span style="color:#ae81ff">0</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;input integer:&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">scanf</span>(<span style="color:#e6db74">&#34;%d&#34;</span>, <span style="color:#f92672">&amp;</span>nums[i]);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;%d&#34;</span>, nums[i]);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">palindrome_v1</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> input_string[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;\0&#39;</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;input character:&#34;</span>);
+</span></span><span style="display:flex;"><span>    input_string[i] <span style="color:#f92672">=</span> <span style="color:#a6e22e">getchar</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getchar</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> reverse_string[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;\0&#39;</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; i <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>; <span style="color:#f92672">--</span>i) {
+</span></span><span style="display:flex;"><span>    reverse_string[<span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> i] <span style="color:#f92672">=</span> input_string[i];
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">strcmp</span>(input_string, reverse_string) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;It&#39;s palindrome!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;No, it&#39;s not.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">palindrome_v2</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> input_string[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;\0&#39;</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> reverse_string[<span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;\0&#39;</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; <span style="color:#f92672">++</span>i) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;input character:&#34;</span>);
+</span></span><span style="display:flex;"><span>    input_string[i] <span style="color:#f92672">=</span> <span style="color:#a6e22e">getchar</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getchar</span>();
+</span></span><span style="display:flex;"><span>    reverse_string[<span style="color:#ae81ff">2</span> <span style="color:#f92672">-</span> i] <span style="color:#f92672">=</span> input_string[i];
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">strcmp</span>(input_string, reverse_string) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;It&#39;s palindrome!</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">printf</span>(<span style="color:#e6db74">&#34;No, it&#39;s not.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() { <span style="color:#a6e22e">palindrome_v2</span>(); }
+</span></span></code></pre></div><p><code>palindrome_v2</code> 代码改动不大，仅是合并了循环，不过我觉得思路上有本质区别。v1 的思路是拿到完整的字符串后再求取字符串的逆序；v2 的思路是在输入字符的过程中就求取了<strong>已输入字符</strong>的逆序。它俩的区别是整体与部分的区别，求取字符串的逆序并不需要拿到完整的字符串时才开始，已输入字符是完整字符串的部分，已输入字符的逆序也是完整字符串逆序的部分。这种<strong>增量式</strong>的求取字符串逆序的思路让求取字符串逆序的时机提前了。输入字符串的长度越长，这种思路带来的优势越明显。</p>
+<p>这种做法用到判断一个整数是否是回文数字，也行得通。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">isPalindrome</span>(<span style="color:#66d9ef">int</span> x) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (x <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> true;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> last <span style="color:#f92672">=</span> x <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (last <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> reverse_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span> (x <span style="color:#f92672">&gt;</span> reverse_num) {
+</span></span><span style="display:flex;"><span>    reverse_num <span style="color:#f92672">=</span> x <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> reverse_num <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> x <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> x <span style="color:#f92672">==</span> reverse_num <span style="color:#f92672">||</span> x <span style="color:#f92672">==</span> (reverse_num <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>输入的整数 <code>x</code> 不知道有多少位，如果想找到 <code>x</code> 的最高位来计算 <code>x</code> 的位数，拿到位数后再计算 <code>x</code> 的逆序数字，这么做势必要多一次循环，本可以提前计算逆序被推迟了。上面代码里 <code>while</code> 循环把求逆序数字和计算每位数字一起做了。</p>
+<p>这种增量的思路巧妙，应用也广泛，是一种优雅的做法。</p>
+
+</article>
+
+            </div>
+        </main>
+    </body></html>

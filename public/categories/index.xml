@@ -2,9 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on ikruns</title>
-    <link>http://ikruns.io/categories/</link>
+    <link>https://ikruns.dev/categories/</link>
     <description>Recent content in Categories on ikruns</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language><atom:link href="http://ikruns.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-cn</language>
+    <atom:link href="https://ikruns.dev/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
